@@ -1,26 +1,23 @@
 <?php
 
 
-echo "Bem vindo!\nDigite os votos do primeiro candidato: ";
-$candidato1 = floatval(trim(fgets(STDIN)));
+echo "Bem vindo!\nQual a quantidade abastecida? ";
+$quantidade = floatval(trim(fgets(STDIN)));
 
-echo "Digite os votos do segundo candidato: ";
-$candidato2 = floatval(trim(fgets(STDIN)));
+echo "Qual preco do litro de combustivel? ";
+$preco = floatval(trim(fgets(STDIN)));
 
-echo "Digite os votos do terceiro candidato: ";
-$candidato3 = floatval(trim(fgets(STDIN)));
+$total = $quantidade * $preco;
 
-if ($candidato1 > $candidato2 && $candidato1 > $candidato3 )
-echo "Canditado 1 ganhou ";
+if ($quantidade >= 10 && $quantidade <= 30)
+$total *= 0.99;
 
-else if ($candidato2 > $candidato1 && $candidato2 > $candidato3 )
-echo "Canditado 2 ganhou";
+else if ($quantidade > 30 && $quantidade < 40)
+$total *= 0.98;
 
-else if ($candidato3 > $candidato1 && $candidato3 > $candidato2 )
-echo "Canditado 3 ganhou";
+else if ($quantidade > 40)
+$total *= 0.975;
 
-else 
-echo "Houve empate entre os 3 canditados!";
-
+echo "Voce abasteceu: $quantidade\nPreco Gasolina L: R$$preco\nTotal a pagar: $total";
 
 ?>
