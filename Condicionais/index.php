@@ -1,41 +1,26 @@
 <?php
 
-try {
 
-echo "Bem vindo!\nDigite o primeiro valor: ";
-$value1 = floatval(trim(fgets(STDIN)));
+echo "Bem vindo!\nDigite os votos do primeiro candidato: ";
+$candidato1 = floatval(trim(fgets(STDIN)));
 
-echo "Digite o segundo valor: ";
-$value2 = floatval(trim(fgets(STDIN)));
+echo "Digite os votos do segundo candidato: ";
+$candidato2 = floatval(trim(fgets(STDIN)));
 
-echo "1. Adição\n2. Subtração\n3. Divisão\n4. Multiplicação\n5. Potência\nDigite uma operação:";
-$option = intval(trim(fgets(STDIN)));
+echo "Digite os votos do terceiro candidato: ";
+$candidato3 = floatval(trim(fgets(STDIN)));
 
-if ($option < 0 || $option > 5)
-throw New Exeception("Erro! ");
+if ($candidato1 > $candidato2 && $candidato1 > $candidato3 )
+echo "Canditado 1 ganhou ";
 
-$res;
+else if ($candidato2 > $candidato1 && $candidato2 > $candidato3 )
+echo "Canditado 2 ganhou";
 
-if ($option == 1)
-$res = $value1+$value2;
+else if ($candidato3 > $candidato1 && $candidato3 > $candidato2 )
+echo "Canditado 3 ganhou";
 
-else if ($option == 2)
-$res = $value1-$value2;
+else 
+echo "Houve empate entre os 3 canditados!";
 
-else if ($option == 3)
-$res = $value1/$value2;
-
-else if ($option == 4)
-$res = $value1*$value2;
-
-else if ($option == 5)
-$res = pow($value1,$value2);
-
-echo "O resultado da operacao e $res .";
-}
-
-catch (Exeception $e){
-    echo "Erro: " . $e->getMessage() . "";
-}
 
 ?>
