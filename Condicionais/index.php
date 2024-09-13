@@ -1,36 +1,41 @@
 <?php
 
-echo "Bem vindo ao caixa eletronico!\nDigite o saldo atual da conta corrente: ";
-$amount = floatval(trim(fgets(STDIN)));
-
-if ($amount < 0)
-throw New Exception("Erro, o valor do saldo nao pode ser negativo. ");
-
-echo "1)Saque\n2)Depósito\n3)Pagamento de Conta\n4)Transferência\nDigite uma operação:";
-$option = intval(trim(fgets(STDIN)));
-
-if ($option < 1 || $option > 4) 
-    throw New Exception("Opção inválida. Selecione uma opção entre 1 e 4.");   
-
 try {
 
-echo "Digite o valor da operação:";
-$value = floatval(trim(fgets(STDIN)));
+echo "Bem vindo!\nDigite o primeiro valor: ";
+$value1 = floatval(trim(fgets(STDIN)));
 
-if ($value <= 0)
-throw New Exception("Somente valores positivos sao aceitos.");    
+echo "Digite o segundo valor: ";
+$value2 = floatval(trim(fgets(STDIN)));
 
-if ($option == 2 )
-$amount+=$value;
+echo "1. Adição\n2. Subtração\n3. Divisão\n4. Multiplicação\n5. Potência\nDigite uma operação:";
+$option = intval(trim(fgets(STDIN)));
 
-else if ($option != 2)
-$amount -= $value;
+if ($option < 0 || $option > 5)
+throw New Exeception("Erro! ");
 
+$res;
+
+if ($option == 1)
+$res = $value1+$value2;
+
+else if ($option == 2)
+$res = $value1-$value2;
+
+else if ($option == 3)
+$res = $value1/$value2;
+
+else if ($option == 4)
+$res = $value1*$value2;
+
+else if ($option == 5)
+$res = pow($value1,$value2);
+
+echo "O resultado da operacao e $res .";
 }
-catch (Exception $e){
-  echo"Erro: " . $e->getMessage();
-}
 
-echo"Saldo final da conta $amount";
+catch (Exeception $e){
+    echo "Erro: " . $e->getMessage() . "";
+}
 
 ?>
