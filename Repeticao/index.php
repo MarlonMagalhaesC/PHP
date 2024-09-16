@@ -1,17 +1,36 @@
 <?php
 
+$cont = 0;
 
-echo "Bem vindo!\nDigite n: ";
-$n = floatval(trim(fgets(STDIN)));
+echo "Bem-vindo à eleição!\n";
 
-echo "Os $n Primeiros pares: \n";
-for ($i = 1; $i<=$n; $i++)
-echo $i * 2 . " ";
+while ($cont == 0) 
+{
+    echo "Digite o nome do candidato 1: ";
+    $nome1 = trim(fgets(STDIN));
 
-echo"\n";
+    echo "Digite o número de votos do candidato 1: ";
+    $numero1 = intval(trim(fgets(STDIN))); 
 
-echo "Os $n Primeiros impares: \n";
-for ($i = 1; $i<=$n; $i++)
-echo $i * 2 - 1 . " ";
+    echo "Digite o nome do candidato 2: ";
+    $nome2 = trim(fgets(STDIN));
+
+    echo "Digite o número de votos do candidato 2: ";
+    $numero2 = intval(trim(fgets(STDIN))); 
+
+    if ($numero1 > $numero2)
+    {
+        echo "O candidato $nome1 ganhou com $numero1 votos!\n";
+        $cont++;
+    }
+    else if ($numero1 < $numero2)
+    {
+        echo "O candidato $nome2 ganhou com $numero2 votos!\n";
+        $cont++;
+    }
+    else 
+        echo "Houve um empate de $numero1 votos. Uma nova eleição deve ser realizada!\n";
+    
+}
 
 ?>
