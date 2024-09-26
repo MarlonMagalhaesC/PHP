@@ -4,24 +4,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gerar automático </title>
+    <title>Conversor R$ para $ </title>
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
     <header>
-        <h1>Gerador de numeros</h1>
+        <h1>Bem vindo</h1>
     </header>
     <main>
-        <h1>Trabalhando com numeros aleatorios </h1>
-        <p>Gerando um numero aleatorio entre 0 e 100.</p>
+        <h1>Conversor de moeda R$ para $ </h1>
+        <form action="conversorMoeda.php" method="get">
+            <label for="idReal">Digite o valor que vai converter em R$:</label>
+            <input type="text" name="inputReal" id="idReal">
 
-        <form action="geradorNumero.php" method="get">
-            <input type="submit" value="Gerar">
+            <label for="idAtual">Cotacao do dolar: </label>
+            <input type="text" name="inputCotacao" id="idAtual">
+
+            <input type="submit" value="Converter">
         </form>
-
-
     </main>
+
+
 </body>
 
 </html>
