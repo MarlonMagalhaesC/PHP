@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Conversor R$ para $ </title>
+    <title>Conversor R$ para US$ </title>
     <link rel="stylesheet" href="style.css">
 </head>
 
@@ -15,11 +15,9 @@
     <main>
         <h1>Conversor de moeda R$ para US$ </h1>
         <form action="conversorMoeda.php" method="get">
+
             <label for="idReal">Digite o valor que vai converter em R$:</label>
             <input type="number" step="0.01" name="inputReal" id="idReal">
-
-            <label for="idAtual">Cotacao do dolar: </label>
-            <input type="number" step="0.01" name="inputCotacao" id="idAtual">
 
             <input type="submit" value="Converter">
         </form>
