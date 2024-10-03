@@ -4,40 +4,59 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Somador</title>
+    <title>Divisor</title>
     <link rel="stylesheet" href="style.css">
 </head>
 
-<body>
 
+<body>
     <?php
-    $valor1 = $_GET["v1"] ?? 0;
-    $valor2 = $_GET["v2"] ?? 0;
+    $dividendo = $_POST["dividendo"] ?? 0;
+    $divisor =   $_POST["divisor"] ?? 1;
+
+
     ?>
 
     <header>
-        <h1>Somando numeros</h1>
+        <h1>Bem vindo! </h1>
     </header>
 
     <main>
-        <form action="<?= $_SERVER["PHP_SELF"] ?>" method="get">
-            <label for="v1">Valor 1: </label>
-            <input type="number" name="v1" id="v1" value="<?= $valor1 ?>">
+        <h1>Anatomia de uma divisao: </h1>
+        <form action="<?= $_SERVER["PHP_SELF"] ?>" method="post">
+            <label for="idDividendo">Dividendo: </label>
+            <input type="number" name="dividendo" id="idDividendo" min="0" value="<?= $dividendo ?>">
 
-            <label for="v2">Valor 2: </label>
-            <input type="number" name="v2" id="v2" value="<?= $valor1 ?>">
-            <input type="submit" value="Calcular">
+            <label for="idDividendo">Divisor: </label>
+            <input type="number" name="divisor" id="idDividendo" min="1" value="<?= $divisor ?>">
+            <input type="submit" value="Analisar">
         </form>
     </main>
 
-    <section id="resultado">
-        <h2>O resultado da soma: </h2>
+    <section>
+
+        <h2>Estrutura de uma divisao: </h2>
 
         <?php
-        $soma = $valor1 + $valor2;
+        $resto = $dividendo % $divisor;
+        $quociente = (int)($dividendo / $divisor);
+        // $quociente = intdiv($dividendo, $divisor);
 
-        echo "<p> O resultado da soma sera dos valores $valor1 e $valor2 sera de <strong> $soma </strong> </p>";
         ?>
+        <table class="divisao">
+            <tr>
+                <td><?= $dividendo ?></td>
+                <td><?= $divisor ?></td>
+            </tr>
+            <tr>
+                <td><?= $resto ?></td>
+                <td><?= $quociente ?></td>
+            </tr>
+
+        </table>
+
+
+
 
     </section>
 </body>
