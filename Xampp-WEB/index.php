@@ -4,60 +4,52 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Divisor</title>
+    <title>Calculador Salário Minimo</title>
     <link rel="stylesheet" href="style.css">
 </head>
 
-
 <body>
     <?php
-    $dividendo = $_POST["dividendo"] ?? 0;
-    $divisor =   $_POST["divisor"] ?? 1;
-
+    //var_dump($_SERVER);
+    $salarioMin = $_POST["salarioMin"] ?? 1;
+    $salario = $_POST["amount"] ?? 0;
 
     ?>
-
     <header>
-        <h1>Bem vindo! </h1>
+        <h1>Bem vindo!</h1>
     </header>
-
     <main>
-        <h1>Anatomia de uma divisao: </h1>
-        <form action="<?= $_SERVER["PHP_SELF"] ?>" method="post">
-            <label for="idDividendo">Dividendo: </label>
-            <input type="number" name="dividendo" id="idDividendo" min="0" value="<?= $dividendo ?>">
+        <h1>Informe seu salário</h1>
 
-            <label for="idDividendo">Divisor: </label>
-            <input type="number" name="divisor" id="idDividendo" min="1" value="<?= $divisor ?>">
-            <input type="submit" value="Analisar">
+        <form action="<?= $_SERVER["PHP_SELF"] ?>" method="post">
+
+            <label for="idSalario">Seu Salário (R$):</label>
+            <input type="number" name="amount" id="idSalario" step="0.01" min="0" value="<?= $salario ?>">
+
+            <label for="idSalario">Salário minimo atual (R$):</label>
+            <input type="number" name="salarioMin" id="idSalario" step="0.01" min="1" value="<?= $salarioMin ?>">
+
+            <input type="submit" value="Calcular">
         </form>
     </main>
 
     <section>
-
-        <h2>Estrutura de uma divisao: </h2>
-
+        <h1>Resultado Final</h1>
         <?php
-        $resto = $dividendo % $divisor;
-        $quociente = (int)($dividendo / $divisor);
-        // $quociente = intdiv($dividendo, $divisor);
+        $padrao = numfmt_create("pt_BR", NumberFormatter::CURRENCY);
+
+        $quantity =  intdiv($salario, $salarioMin);
+
+        $resto = (($salario / $salarioMin) - $quantity) * $salarioMin; //quero o resto com os decimais
+        echo "<p>Seu salario <em>" . numfmt_format_currency($padrao, $salario, "BRL") . " </em> equivale a  <strong>  $quantity  salários mínimos </strong> ";
+
+        if ($salario > $salarioMin) {
+            echo "+ <em>" . numfmt_format_currency($padrao, $resto, "BRL") . " </em>";
+        }
+
+        echo "</p>";
 
         ?>
-        <table class="divisao">
-            <tr>
-                <td><?= $dividendo ?></td>
-                <td><?= $divisor ?></td>
-            </tr>
-            <tr>
-                <td><?= $resto ?></td>
-                <td><?= $quociente ?></td>
-            </tr>
-
-        </table>
-
-
-
-
     </section>
 </body>
 
