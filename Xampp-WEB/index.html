@@ -4,26 +4,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Conversor R$ para US$ </title>
+    <title>Analisador de numero real</title>
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
     <header>
-        <h1>Bem vindo</h1>
+        <h1>Bem vindo!</h1>
     </header>
+
     <main>
-        <h1>Conversor de moeda R$ para US$ </h1>
-        <form action="conversorMoeda.php" method="get">
 
-            <label for="idReal">Digite o valor que vai converter em R$:</label>
-            <input type="number" step="0.01" name="inputReal" id="idReal">
 
-            <input type="submit" value="Converter">
+
+        <h1>Analisador de número real!</h1>
+
+        <form action="config.php" method="post">
+            <label for="real">Numero real: </label>
+            <input type="number" step="0.0001" name="numeroReal" id="real" placeholder="Ex: 0,1234">
+            <input type="submit" value="Analisar">
         </form>
+
+
+
+
+
     </main>
-
-
 </body>
 
 </html>
