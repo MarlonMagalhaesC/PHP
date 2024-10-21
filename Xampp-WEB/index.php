@@ -4,52 +4,55 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Calculando sua Idade</title>
+    <title>Reajustador de precos!</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <?php
-
-
-// Inicializando as variáveis
-$anoNasc = $_POST["_dateNasc"] ?? "";
-$anoDesejado = $_POST["_anoDesejado"] ?? "";
+$preco = $_REQUEST["price"] ?? '';
+$reajuste = $_REQUEST["reajuste"] ?? '';
+//var_dump($_SERVER);
 ?>
 
 <body>
     <header>
-        <h1>Bem vindo!</h1>
+        <h1> Bem vindo! </h1>
     </header>
     <main>
-        <h1>Calculando sua idade.</h1>
+        <h1>Reajustador de preços: </h1>
 
         <form action="<?= $_SERVER["PHP_SELF"] ?>" method="post">
-            <label for="idNasc">Digite sua data de nascimento: </label>
-            <input type="date" name="_dateNasc" id="idNasc" value="<?= $anoNasc ?>">
 
-            <label for="IdanoDesejado">Quer saber sua idade em que data? Atualmente estamos na data
-                <strong><?= date('Y-m-d') ?></strong> </label>
-            <input type="date" name="_anoDesejado" id="IdanoDesejado" value="<?= $anoDesejado ?>">
+            <label for="idPrice">Preco do produto R$</label>
+            <input type="number" name="price" id="idPrice" step="0.01" placeholder="Digite aqui" min="0.01"
+                value="<?= $preco ?>">
 
-            <input type="submit" value="Calcular">
+            <label for="idReaj">Qual sera o percentual de reajuste? (<strong><span id="p"></span>%</strong>) </label>
+            <input type="range" name="reajuste" id="idReaj" min="0" max="100" step="1" oninput="mudaValor()"
+                value="<?= $reajuste ?>">
+
+            <input type="submit" value="Enviar">
         </form>
 
-        <?php
-        if ($_SERVER["REQUEST_METHOD"] === "POST") {
-            // Criar objetos DateTime
-            $dataNascimento = new DateTime($anoNasc);
-            $dataDesejada = new DateTime($anoDesejado);
-
-            // Calcular a diferença
-            $idade = $dataNascimento->diff($dataDesejada);
-
-            // Exibir resultado
-            echo "<h1><strong>Resultado</strong>:</h1> 
-            <ul>
-                <li>A sua idade será de <strong> {$idade->y} anos, {$idade->m} meses e {$idade->d} dias</strong>.</li>
-            </ul>";
-        }
-        ?>
     </main>
+
+    <?php
+
+    if ($_SERVER["REQUEST_METHOD"] === "POST") {
+
+        $padrao = numfmt_create("pt_BR", NumberFormatter::CURRENCY);
+        $precoReajustado = $preco + ($preco * ($reajuste / 100));
+
+        echo "<section><h1><strong> Resultado: </strong> </h1><p>O produto que custava <strong>" . numfmt_format_currency($padrao, $preco, "BRL") . " </strong> com <strong>" . $reajuste . "</strong>% de aumento vai passar a custar <strong>" . numfmt_format_currency($padrao, $precoReajustado, "BRL") . "</strong> a partir de agora. </p> </section> ";
+    }
+    ?>
+
+    <script>
+        mudaValor();
+
+        function mudaValor() {
+            p.innerText = idReaj.value;
+        }
+    </script>
 </body>
 
 </html>
