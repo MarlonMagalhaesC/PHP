@@ -1,64 +1,55 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Calculando Médias</title>
+    <title>Calculando sua Idade</title>
     <link rel="stylesheet" href="style.css">
 </head>
+<?php
+
+
+// Inicializando as variáveis
+$anoNasc = $_POST["_dateNasc"] ?? "";
+$anoDesejado = $_POST["_anoDesejado"] ?? "";
+?>
 
 <body>
-    <?php
-    $valor1 = $_REQUEST["_valor1"] ?? '';
-    $valor2 = $_REQUEST["_valor2"] ?? '';
-    $peso1 = $_REQUEST["_peso1"] ?? '';
-    $peso2 = $_REQUEST["_peso2"] ?? '';
-
-    ?>
-
     <header>
         <h1>Bem vindo!</h1>
     </header>
-
     <main>
-        <h1>Calculando Média Aritmética</h1>
+        <h1>Calculando sua idade.</h1>
 
         <form action="<?= $_SERVER["PHP_SELF"] ?>" method="post">
-            <label for="idvalor1">1° Valor:</label>
-            <input type="number" name="_valor1" id="idvalor1" min="1" placeholder="Digite aqui" value="<?= $valor1 ?>"
-                required>
+            <label for="idNasc">Digite sua data de nascimento: </label>
+            <input type="date" name="_dateNasc" id="idNasc" value="<?= $anoNasc ?>">
 
-            <label for="idpeso1">Peso do 1° Valor:</label>
-            <input type="number" name="_peso1" id="idpeso1" min="1" placeholder="Digite aqui" value="<?= $peso1 ?>"
-                required>
+            <label for="IdanoDesejado">Quer saber sua idade em que data? Atualmente estamos na data
+                <strong><?= date('Y-m-d') ?></strong> </label>
+            <input type="date" name="_anoDesejado" id="IdanoDesejado" value="<?= $anoDesejado ?>">
 
-            <label for="idvalor2">2° Valor:</label>
-            <input type="number" name="_valor2" id="idvalor2" min="1" placeholder="Digite aqui" value="<?= $valor2 ?>"
-                required>
-
-            <label for="idPeso2">Peso do 2° Valor:</label>
-            <input type="number" name="_peso2" id="idPeso2" min="1" placeholder="Digite aqui" value="<?= $peso2 ?>"
-                required>
             <input type="submit" value="Calcular">
         </form>
-    </main>
 
-    <section>
-        <?php if ($_SERVER["REQUEST_METHOD"] === "POST") {
+        <?php
+        if ($_SERVER["REQUEST_METHOD"] === "POST") {
+            // Criar objetos DateTime
+            $dataNascimento = new DateTime($anoNasc);
+            $dataDesejada = new DateTime($anoDesejado);
 
-            $mediaS = ($valor1 + $valor2) / 2;
-            $mediaP = (($valor1 * $peso1) + ($valor2 * $peso2)) / ($peso1 + $peso2);
+            // Calcular a diferença
+            $idade = $dataNascimento->diff($dataDesejada);
 
-            echo "<p>Analisando os valores <strong>$valor1</strong> e <strong>$valor2</strong>:</p>
-        <ul>
-            <li>A <strong>média aritmética simples</strong> entre os valores é de <em>" . number_format($mediaS, 2, ",", ".") . "</em></li>
-            <li>A <strong>média aritmética ponderada</strong> entre os valores é de <em>" . number_format($mediaP, 2, ",", ".") . "</em></li>
-        </ul>";
+            // Exibir resultado
+            echo "<h1><strong>Resultado</strong>:</h1> 
+            <ul>
+                <li>A sua idade será de <strong> {$idade->y} anos, {$idade->m} meses e {$idade->d} dias</strong>.</li>
+            </ul>";
         }
         ?>
-
-    </section>
+    </main>
 </body>
 
 </html>
