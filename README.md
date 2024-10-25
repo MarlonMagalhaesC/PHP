@@ -3,4 +3,4 @@ Utilizei PHP em diversos contextos, incluindo **formulários web estáticos e re
 
 Cada projeto contribuiu para fortalecer minha compreensão da linguagem e suas funcionalidades, permitindo-me construir soluções eficazes e envolventes.
 
-👉 Importante: Os projetos funcionarão corretamente quando colocados na pasta htdocs do XAMPP. 
+👉 Importante: **Cada versão do commit é um projeto diferente**. Os projetos funcionarão corretamente quando colocados na pasta htdocs do XAMPP. 
